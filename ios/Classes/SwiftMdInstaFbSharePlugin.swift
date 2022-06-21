@@ -159,7 +159,7 @@ public class SwiftMdInstaFbSharePlugin: NSObject, FlutterPlugin, SharingDelegate
           
           let photo = SharePhoto(
               image: backgroundImage!,
-              userGenerated: true
+              isUserGenerated: true
           );
           let content = SharePhotoContent();
           content.photos = [photo];
