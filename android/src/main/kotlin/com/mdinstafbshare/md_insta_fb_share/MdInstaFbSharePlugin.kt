@@ -20,6 +20,8 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import java.io.File
 import java.net.URI
 import androidx.core.content.ContextCompat.startActivity
+import com.facebook.share.model.ShareHashtag
+import com.facebook.share.model.ShareMediaContent
 import com.facebook.share.model.SharePhoto
 import com.facebook.share.model.SharePhotoContent
 import com.facebook.share.widget.ShareDialog
@@ -122,10 +124,29 @@ class MdInstaFbSharePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                         return
                     }
 
+                    lateinit var shareDialog: ShareDialog
+
+                    try {
+                        shareDialog  = ShareDialog(activity)
+                    }catch (e:Exception){
+                        result.success(4)
+                        return
+                    }
+
                     val photo = SharePhoto.Builder().setImageUrl(uri).build()
-                    val content = SharePhotoContent.Builder().addPhoto(photo).build()
-                    ShareDialog.show(activity, content);
-                    result.success(0)
+                    val content = ShareMediaContent.Builder()
+                        .addMedium(photo)
+                        .setShareHashtag(
+                            ShareHashtag.Builder()
+                                .setHashtag("#Backstage_army")
+                                .build()
+                        ).build()
+
+                    if (ShareDialog.canShow(SharePhotoContent::class.java)) {
+                        shareDialog.show(content)
+                        result.success(0)
+                    }
+                    result.success(4)
                 } else {
                     openMissingAppInPlayStore(FB_PACKAGE_NAME)
                     result.success(0)
