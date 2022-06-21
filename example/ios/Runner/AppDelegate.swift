@@ -9,7 +9,6 @@ import FBSDKCoreKit
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-    ApplicationDelegate.shared.initializeSDK();
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
