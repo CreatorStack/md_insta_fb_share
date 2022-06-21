@@ -145,8 +145,9 @@ class MdInstaFbSharePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                     if (ShareDialog.canShow(SharePhotoContent::class.java)) {
                         shareDialog.show(content)
                         result.success(0)
+                    }else{
+                        result.success(4)
                     }
-                    result.success(4)
                 } else {
                     openMissingAppInPlayStore(FB_PACKAGE_NAME)
                     result.success(0)
