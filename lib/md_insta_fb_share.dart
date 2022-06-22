@@ -11,7 +11,7 @@ enum ShareStatus {
 }
 
 ShareStatus _convertResponseToStatus(num? status) {
-  switch(status) {
+  switch (status) {
     case 0:
       return ShareStatus.success;
     case 1:
@@ -26,33 +26,34 @@ ShareStatus _convertResponseToStatus(num? status) {
 }
 
 class MdInstaFbShare {
-
   MdInstaFbShare._();
 
   static const MethodChannel _channel = MethodChannel('md_insta_fb_share');
 
   static Future<ShareStatus> shareInstaStory(String backgroundImagePath) async {
-    return _convertResponseToStatus(
-      await _channel.invokeMethod('share_insta_story', { "backgroundImage": backgroundImagePath })
-    );
+    return _convertResponseToStatus(await _channel.invokeMethod(
+        'share_insta_story', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<ShareStatus> shareInstaFeed(String backgroundImagePath) async {
-    return _convertResponseToStatus(
-      await _channel.invokeMethod('share_insta_feed', { "backgroundImage": backgroundImagePath })
-    );
+    return _convertResponseToStatus(await _channel.invokeMethod(
+        'share_insta_feed', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<ShareStatus> shareFBStory(String backgroundImagePath) async {
-    return _convertResponseToStatus(
-      await _channel.invokeMethod('share_FB_story', { "backgroundImage": backgroundImagePath })
-    );
+    return _convertResponseToStatus(await _channel.invokeMethod(
+        'share_FB_story', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<ShareStatus> shareFBFeed(String backgroundImagePath) async {
-    return _convertResponseToStatus(
-        await _channel.invokeMethod('share_FB_feed', {"backgroundImage": backgroundImagePath })
-    );
+    return _convertResponseToStatus(await _channel.invokeMethod(
+        'share_FB_feed', {"backgroundImage": backgroundImagePath}));
+  }
+
+  static Future<ShareStatus> shareTwitterFeed(
+      String backgroundImagePath) async {
+    return _convertResponseToStatus(await _channel.invokeMethod(
+        'share_twitter_feed', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<bool> checkFBInstalled() async {

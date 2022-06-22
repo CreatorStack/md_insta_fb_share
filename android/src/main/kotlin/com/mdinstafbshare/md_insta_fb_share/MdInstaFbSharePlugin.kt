@@ -37,6 +37,8 @@ class MdInstaFbSharePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     private lateinit var channel: MethodChannel
     private val INSTAGRAM_PACKAGE_NAME: String = "com.instagram.android"
     private val FB_PACKAGE_NAME: String = "com.facebook.katana"
+    private val TWITTER_PACKAGE_NAME: String = "com.twitter.android"
+
 
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
@@ -151,6 +153,34 @@ class MdInstaFbSharePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 } else {
                     openMissingAppInPlayStore(FB_PACKAGE_NAME)
                     result.success(0)
+                }
+            }
+
+            "share_twitter_feed" -> {
+                if (checkAppInstalled(TWITTER_PACKAGE_NAME)) {
+                    val uri = try {
+                        getPictureUri(call)
+                    } catch (e : Exception) {
+                        result.success(2)
+                        return
+                    }
+
+                    val intent = Intent(Intent.ACTION_SEND)
+                    intent.putExtra(Intent.EXTRA_TEXT, "I just launched a new Exclusive on my invite-only club, Backstage. Join now to redeem it!")
+                    intent.type = "text/plain"
+                    intent.putExtra(Intent.EXTRA_STREAM, uri)
+                    intent.type = "image/*"
+                    intent.putExtra(Intent.EXTRA_STREAM, uri)
+                    intent.setPackage(TWITTER_PACKAGE_NAME)
+
+                    activity.grantUriPermission(
+                        TWITTER_PACKAGE_NAME, uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    activity.startActivityForResult(intent, 0)
+
+                    result.success(0)
+                } else {
+                    openMissingAppInPlayStore(TWITTER_PACKAGE_NAME)
+                    result.success(1)
                 }
             }
 
