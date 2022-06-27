@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -123,6 +125,20 @@ class _MyAppState extends State<MyApp> {
                   const Text('FB App available: '),
                   FutureBuilder(
                     future: MdInstaFbShare.checkFBInstalled(),
+                    builder: (_, snapshot) {
+                      if (snapshot.hasData) {
+                        return Text('${snapshot.data}');
+                      }
+                      return Container();
+                    },
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  const Text('Twitter App available: '),
+                  FutureBuilder(
+                    future: MdInstaFbShare.checkTwitterInstalled(),
                     builder: (_, snapshot) {
                       if (snapshot.hasData) {
                         return Text('${snapshot.data}');

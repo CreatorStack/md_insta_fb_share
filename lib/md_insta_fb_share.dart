@@ -53,7 +53,10 @@ class MdInstaFbShare {
   static Future<ShareStatus> shareTwitterFeed(
       String backgroundImagePath) async {
     return _convertResponseToStatus(await _channel.invokeMethod(
-        'share_twitter_feed', {"backgroundImage": backgroundImagePath}));
+        'share_twitter_feed', {
+      "backgroundImage": backgroundImagePath,
+      "captionText": "this is a test text"
+    }));
   }
 
   static Future<bool> checkFBInstalled() async {
@@ -66,6 +69,14 @@ class MdInstaFbShare {
 
   static Future<bool> checkInstaInstalled() async {
     final check = await _channel.invokeMethod('check_insta');
+    if (check == null) {
+      throw Exception("Platform error");
+    }
+    return check;
+  }
+
+  static Future<bool> checkTwitterInstalled() async {
+    final check = await _channel.invokeMethod('check_twitter');
     if (check == null) {
       throw Exception("Platform error");
     }
