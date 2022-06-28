@@ -188,6 +188,8 @@ class MdInstaFbSharePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
             "check_FB" -> result.success(checkAppInstalled(FB_PACKAGE_NAME))
 
+            "check_twitter" -> result.success(checkAppInstalled(TWITTER_PACKAGE_NAME))
+
             else -> result.notImplemented();
         }
     }
