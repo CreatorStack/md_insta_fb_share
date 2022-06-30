@@ -164,9 +164,11 @@ class MdInstaFbSharePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                         result.success(2)
                         return
                     }
+                    val captionText = call.argument<String>("captionText") ?: ""
+
 
                     val intent = Intent(Intent.ACTION_SEND)
-                    intent.putExtra(Intent.EXTRA_TEXT, "I just launched a new Exclusive on my invite-only club, Backstage. Join now to redeem it!")
+                    intent.putExtra(Intent.EXTRA_TEXT, captionText)
                     intent.type = "text/plain"
                     intent.putExtra(Intent.EXTRA_STREAM, uri)
                     intent.type = "image/*"

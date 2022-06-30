@@ -51,11 +51,11 @@ class MdInstaFbShare {
   }
 
   static Future<ShareStatus> shareTwitterFeed(
-      String backgroundImagePath) async {
-    return _convertResponseToStatus(await _channel.invokeMethod(
-        'share_twitter_feed', {
+      String backgroundImagePath, String captionText) async {
+    return _convertResponseToStatus(
+        await _channel.invokeMethod('share_twitter_feed', {
       "backgroundImage": backgroundImagePath,
-      "captionText": "this is a test text"
+      "captionText": captionText,
     }));
   }
 

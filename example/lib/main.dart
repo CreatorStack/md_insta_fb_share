@@ -110,7 +110,10 @@ class _MyAppState extends State<MyApp> {
                         buffer.asUint8List(
                             data.offsetInBytes, data.lengthInBytes));
                     if (await InternetConnectionChecker().hasConnection) {
-                      print(await MdInstaFbShare.shareTwitterFeed(file.path));
+                      print(await MdInstaFbShare.shareTwitterFeed(
+                        file.path,
+                        "Sharing from Twitter",
+                      ));
                     } else {
                       scaffoldMessengerKey.currentState?.showSnackBar(
                           const SnackBar(
