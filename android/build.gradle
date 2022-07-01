@@ -47,5 +47,6 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // Added facebook share dependcy to open FB share sheet
     compileOnly 'com.facebook.android:facebook-share:latest.release'
 }

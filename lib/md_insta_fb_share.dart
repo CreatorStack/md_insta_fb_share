@@ -31,29 +31,27 @@ class MdInstaFbShare {
   static const MethodChannel _channel = MethodChannel('md_insta_fb_share');
 
   static Future<ShareStatus> shareInstaStory(String backgroundImagePath) async {
-    return _convertResponseToStatus(await _channel.invokeMethod(
-        'share_insta_story', {"backgroundImage": backgroundImagePath}));
+    return _convertResponseToStatus(
+        await _channel.invokeMethod('share_insta_story', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<ShareStatus> shareInstaFeed(String backgroundImagePath) async {
-    return _convertResponseToStatus(await _channel.invokeMethod(
-        'share_insta_feed', {"backgroundImage": backgroundImagePath}));
+    return _convertResponseToStatus(
+        await _channel.invokeMethod('share_insta_feed', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<ShareStatus> shareFBStory(String backgroundImagePath) async {
-    return _convertResponseToStatus(await _channel.invokeMethod(
-        'share_FB_story', {"backgroundImage": backgroundImagePath}));
+    return _convertResponseToStatus(
+        await _channel.invokeMethod('share_FB_story', {"backgroundImage": backgroundImagePath}));
   }
 
   static Future<ShareStatus> shareFBFeed(String backgroundImagePath) async {
-    return _convertResponseToStatus(await _channel.invokeMethod(
-        'share_FB_feed', {"backgroundImage": backgroundImagePath}));
+    return _convertResponseToStatus(
+        await _channel.invokeMethod('share_FB_feed', {"backgroundImage": backgroundImagePath}));
   }
 
-  static Future<ShareStatus> shareTwitterFeed(
-      String backgroundImagePath, String captionText) async {
-    return _convertResponseToStatus(
-        await _channel.invokeMethod('share_twitter_feed', {
+  static Future<ShareStatus> shareTwitterFeed(String backgroundImagePath, String captionText) async {
+    return _convertResponseToStatus(await _channel.invokeMethod('share_twitter_feed', {
       "backgroundImage": backgroundImagePath,
       "captionText": captionText,
     }));

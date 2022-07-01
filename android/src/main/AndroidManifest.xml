@@ -2,6 +2,7 @@
     package="com.mdinstafbshare.md_insta_fb_share">
 
     <application>
+    <!-- For file provider to access storage safely -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.mdInstaFbShare.provider"
@@ -13,9 +14,10 @@
         </provider>
     </application>
 
+    <!-- allows app to access Facebook app features -->
     <queries>
         <package android:name="com.instagram.android" />
         <package android:name="com.facebook.katana" />
-        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" /> <!-- allows app to access Facebook app features -->
+        <provider android:authorities="com.facebook.katana.provider.PlatformProvider" /> 
     </queries>
 </manifest>
