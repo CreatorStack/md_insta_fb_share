@@ -16,7 +16,7 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   # Added facebook share dependcy to open FB share sheet
-  s.dependency 'FBSDKCoreKit','~> 11.0.0'
+  s.dependency 'FBSDKCoreKit', '~> 15.0'
   s.dependency 'FBSDKShareKit'
   s.platform = :ios, '8.0'
 
